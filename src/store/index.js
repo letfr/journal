@@ -5,11 +5,23 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-  },
-  mutations: {
+    userProfile: {},
+    notes: [],
   },
   actions: {
+    clearData({ commit }) {
+      commit('setUserProfile', {});
+      commit('setNotes', null);
+    },
+    userProfile({ commit }, val) {
+      commit('setUserProfile', val);
+    },
   },
-  modules: {
+  mutations: {
+    setUserProfile(state, val) { state.userProfile = val; },
+    setNote(state, val) {
+      // eslint-disable-next-line no-unused-expressions
+      (val) ? state.notes = val : state.notes = [];
+    },
   },
 });
