@@ -7,7 +7,7 @@ $gray: #7E7E7E;
 $dark-gray: #545454;
 $light-blue: #B7D3D9;
 $blue: #8FADB6;
-$light-rose: #FAC2B3;
+$light-rose: #FADFD6;
 $rose: #FAC2B3;
 $primary-font: 'Montserrat', sans-serif;
 $secondary-font: 'Poppins', sans-serif;;
@@ -23,17 +23,34 @@ $secondary-font: 'Poppins', sans-serif;;
 }
 
 a {
-  color: $white;
   text-decoration: none;
+}
+
+.btn {
+  background-color: $gray;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: $blue;
+  }
+}
+
+a, button {
+  color: $white;
   font-family: $primary-font;
 }
 
-h1, h2 {
+h1, h2, h3, label {
   padding: 5px;
   color: $white;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-family: $primary-font;
+}
+
+p {
+  color: $white;
+  font-family: $secondary-font;
 }
 
 form {
@@ -43,7 +60,7 @@ form {
 }
 
 textarea {
-  padding: 30px;
+  padding: 15px 30px;
   margin: 30px auto;
   background-color: $gray;
   border: none;
@@ -56,4 +73,51 @@ textarea {
   font-size: 14px;
   color: $white;
   font-family: $secondary-font;
+}
+
+input {
+  background-color: $gray;
+  border: none;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+output {
+  font-family: $primary-font;
+  &[name="error"]{
+  color: #ff4141;
+  }
+  &[name="success"]{
+    color: #41ff6a;
+  }
+}
+
+.emoji {
+  .very-happy {
+    &:hover {
+      background: $blue;
+    }
+  }
+  .happy {
+    &:hover {
+      background: $light-blue;
+    }
+  }
+  .normal {
+    &:hover {
+      background: $gray;
+    }
+  }
+  .sad {
+    &:hover {
+      background: $light-rose;
+    }
+  }
+  .very-sad {
+    &:hover {
+      background: $rose;
+    }
+  }
 }

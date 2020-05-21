@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 const webpack = require('webpack');
 
 module.exports = {
@@ -22,6 +21,7 @@ module.exports = {
         'firebaseStorageBucket',
         'firebaseMessagingSenderId',
         'firebaseAppId',
+        'appPassword',
       ]),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
@@ -32,6 +32,7 @@ module.exports = {
         'process.env.firebaseStorageBucket': JSON.stringify(process.env.firebaseStorageBucket),
         'process.env.firebaseMessagingSenderId': JSON.stringify(process.env.firebaseMessagingSenderId),
         'process.env.firebaseAppId': JSON.stringify(process.env.firebaseAppId),
+        'process.env.appPassword': JSON.stringify(process.env.appPassword),
       }),
     ],
   },
