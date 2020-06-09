@@ -2,13 +2,14 @@
   <div class="all-notes container">
   <a class="back" @click="redirect"></a>
   <div class="note" v-for="note in notes" :key="note.id">
-    <div>
-      <h1> {{ note.createdOn }} </h1>
-      <h2> {{ note.time }} </h2>
-    </div>
-    <span class="emoji" :style="`
-    -webkit-mask: url('../assets/${note.mood}.svg') center / contain no-repeat;
-    mask: url('../assets/${note.mood}.svg') center / contain no-repeat;`"></span>
+    <header>
+      <div class="note-header">
+        <h1> {{ note.createdOn }} </h1>
+        <h2> {{ note.time }} </h2>
+      </div>
+    <img class="emoji" :src="require(`../assets/${note.mood}.png`)" alt="">
+    </header>
+    <p> {{ note.content }} </p>
   </div>
   </div>
 </template>
@@ -32,7 +33,7 @@ export default {
       this.$router.push({ name: 'Home' });
     },
     async allNotes() {
-      await fb.notes.get().then((docs) => {
+      await fb.notes.orderBy('time').get().then((docs) => {
         docs.forEach((doc) => this.notes.push(doc.data()));
       });
     },
@@ -41,7 +42,11 @@ export default {
 </script>
 
 <style lang="scss">
-.back{
+.all-notes {
+  overflow: auto;
+}
+
+.back {
   cursor: pointer;
   position: absolute;
   width: 20px;
@@ -52,27 +57,24 @@ export default {
   mask: url('../assets/arrow-back.svg') center / contain no-repeat;
 }
 
-.all-notes {
-  flex-direction: row;
-  flex-flow: wrap;
-}
-
 .note {
   margin: 20px auto 10px auto;
   padding: 20px;
   background: #7E7E7E;
-  width: 360px;
-  height: 60px;
+  width: 70%;
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   p {
-    padding: 5px 0;
+    padding: 10px;
+    margin-top: 20px;
     font-size: 14px;
   }
-  .emoji {
-    width: 20px;
-    height: 20px;
-    margin: 25px;
-    padding: 20px;
-    background: #fff;
+  img {
+    width: 50px;
+    height: 50px;
   }
 }
 </style>

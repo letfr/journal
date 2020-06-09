@@ -1,8 +1,8 @@
 <template>
   <div class="home container">
-    <a class="all-notes" @click="redirect('AllNotes')">ALL NOTES</a>
-    <a class="new-note" @click="redirect('NewNote')">CREATE NEW NOTE</a>
-    <a class="habit-tracker" @click="redirect('NewNote')">HABIT TRACKER</a>
+    <a class="all-notes-button" @click="redirect('AllNotes')">ALL NOTES</a>
+    <a class="new-note-button" @click="redirect('NewNote')">CREATE NEW NOTE</a>
+    <a class="habit-tracker-button">HABIT TRACKER</a>
   </div>
 </template>
 

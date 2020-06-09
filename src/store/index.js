@@ -19,19 +19,6 @@ export default new Vuex.Store({
       await fb.user.doc('Xt5Hj5xbvt6kw12ITzKV').get()
         .then((res) => commit('setUserProfile', res.data()));
     },
-    // async createNote({
-    //   date, time, mood, author, note,
-    // }) {
-    //   await fb.notes.add({
-    //     createdOn: date,
-    //     time,
-    //     mood,
-    //     author,
-    //     content: note,
-    //   }).catch((err) => {
-    //     console.log(err);
-    //   });
-    // },
   },
   mutations: {
     setUserProfile(state, val) { state.userProfile = val; },

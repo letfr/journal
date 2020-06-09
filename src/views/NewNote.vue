@@ -49,10 +49,10 @@ export default {
   data() {
     return {
       sended: false,
-      date: moment().format('dddd - D.MM.YYYY'),
+      timestamp: moment().format(),
+      date: moment().format('dddd - DDDD.MM.YYYY'),
       time: moment().format('LT'),
       mood: '',
-      moodClicked: '',
       note: {
         content: '',
       },
@@ -70,7 +70,13 @@ export default {
     setMood(mood) {
       event.preventDefault();
       this.mood = mood;
-      this.moodClicked = mood;
+      // [BUG]
+      document.getElementsByClassName('emoji').forEach((el) => {
+        (el.children[0] !== event.target)
+          ? el.style.opacity = '20%'
+          : event.target.style.opacity = 'none';
+      });
+      //
     },
     async createNote() {
       await fb.notes.add({
@@ -85,7 +91,7 @@ export default {
 
       this.note.content = '';
       this.sended = true;
-      this.moodClicked = '';
+      this.mood = '';
     },
   },
 };
@@ -115,8 +121,8 @@ export default {
   }
   form {
     textarea {
-      width: 70vw;
-      height: 47vh;
+      width: calc(70vw - 60px);
+      height: 40vh;
     }
     button {
       width: 200px;
@@ -126,24 +132,23 @@ export default {
   }
   .mood-tracker {
     width: 70vw;
-    padding: 15px 30px;
+    padding: 15px 0;
     background: #7E7E7E;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
   }
   .emojis {
-    width: 90%;
+    width: 70%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     .emoji {
       cursor: pointer;
       img {
         width: 50px;
-        filter: grayscale(50%);
-        &:hover {
-          filter: none;
-        }
+      }
+      &:hover {
+        opacity: none;
       }
     }
   }
